@@ -19,6 +19,8 @@ final viewKeyProvider = AutoDisposeProvider<String>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ViewKeyRef = AutoDisposeProviderRef<String>;
 String _$resumeKeyHash() => r'cddcde19058def8324234c1052abe7b2aee94518';
 
@@ -155,6 +157,8 @@ class ResumeKeyProvider extends AutoDisposeProvider<String> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ResumeKeyRef on AutoDisposeProviderRef<String> {
   /// The parameter `parentId` of this provider.
   String? get parentId;
@@ -182,6 +186,8 @@ final suggestionKeyProvider = AutoDisposeProvider<String>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SuggestionKeyRef = AutoDisposeProviderRef<String>;
 String _$lastMediaKeyHash() => r'6e56e776f74c26246e7e3a1cfda39bd427169189';
 
@@ -298,6 +304,8 @@ class LastMediaKeyProvider extends AutoDisposeProvider<String> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin LastMediaKeyRef on AutoDisposeProviderRef<String> {
   /// The parameter `parentId` of this provider.
   String get parentId;
@@ -311,4 +319,4 @@ class _LastMediaKeyProviderElement extends AutoDisposeProviderElement<String>
   String get parentId => (origin as LastMediaKeyProvider).parentId;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

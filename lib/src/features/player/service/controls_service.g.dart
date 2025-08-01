@@ -6,7 +6,7 @@ part of 'controls_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$controlsServiceHash() => r'e3e8db6f196be9f3673ceb5e2bb18604dffb5aa1';
+String _$controlsServiceHash() => r'c3b356e61556dc039751c76e5f2e32bc09e5731b';
 
 /// See also [ControlsService].
 @ProviderFor(ControlsService)
@@ -23,4 +23,4 @@ final controlsServiceProvider =
 
 typedef _$ControlsService = AutoDisposeNotifier<ControlsState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -65,11 +65,12 @@ class ControlsService extends _$ControlsService{
         position: media.position
     );
 
-    await ref.read(videoControllerProvider)
-        .player
-        .open(Media(url,httpHeaders: {'user-agent': "Themby/1.0.4",},start: media.position));
+    // 等待异步控制器初始化完成
+    final controller = await ref.read(videoControllerNotifierProvider.future);
 
-    await ref.read(videoControllerProvider).player.play().then((v)async{
+    await controller.player.open(Media(url,httpHeaders: {'user-agent': "Themby/1.0.4",},start: media.position));
+
+    await controller.player.play().then((v)async{
       if(media.audioIndex != null){
         toggleAudio(media.audioIndex!);
       }
@@ -81,37 +82,51 @@ class ControlsService extends _$ControlsService{
 
   ///跳转到指定位置
   Future<void> seekTo(Duration position,{String type = "slide"}) async{
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) {
+      throw Exception('视频控制器未初始化');
+    }
+
     if (position < Duration.zero) {
       position = Duration.zero;
     }
     if(type != "slide"){
-      await ref.read(videoControllerProvider).player.stream.buffer.first;
+      await controller.player.stream.buffer.first;
     }
 
-    await ref.read(videoControllerProvider).player.seek(position);
+    await controller.player.seek(position);
 
-    if (!ref.read(videoControllerProvider).player.state.playing) {
-      ref.read(videoControllerProvider).player.play();
+    if (!controller.player.state.playing) {
+      controller.player.play();
     }
   }
 
   ///设置播放速度
   Future<void> setRate(double rate) async{
-    ref.read(videoControllerProvider).player.setRate(rate);
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) {
+      throw Exception('视频控制器未初始化');
+    }
+    controller.player.setRate(rate);
     state = state.copyWith(rate: rate);
   }
 
   /// 切换到指定的媒体
   Future<void> togglePlayMedia(String id, int index) async {
-    ref.read(videoControllerProvider).player.pause();
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) {
+      throw Exception('视频控制器未初始化');
+    }
+
+    controller.player.pause();
 
     PlaybackInfo playInfo = await ref.read(getPlaybackInfoProvider(id).future);
     String mediaSourceId = playInfo.mediaSources[0].id;
     String playSessionId = playInfo.playSessionId;
     String url = await ref.read(getPlayerUrlProvider(id).future);
 
-    ref.read(videoControllerProvider).player.open(Media(url,httpHeaders: {'user-agent': "Themby/1.0.3",}));
-    ref.read(videoControllerProvider).player.play().then((v) {
+    controller.player.open(Media(url,httpHeaders: {'user-agent': "Themby/1.0.3",}));
+    controller.player.play().then((v) {
       startRecordPosition();
     });
     state = state.copyWith(currentMediaId: id, mediaSourceId: mediaSourceId, playSessionId: playSessionId, mediaIndex: index);
@@ -119,20 +134,30 @@ class ControlsService extends _$ControlsService{
 
   /// 切换音轨
   Future<void> toggleAudio(int index) async {
-    final player = ref.read(videoControllerProvider).player;
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) {
+      throw Exception('视频控制器未初始化');
+    }
+    
+    final player = controller.player;
     List<AudioTrack> audios = player.state.tracks.audio;
 
-    await ref.read(videoControllerProvider).player.stream.buffer.first;
+    await controller.player.stream.buffer.first;
 
     await player.setAudioTrack(audios[index + 2]);
   }
 
   /// 切换字幕
   Future<void> toggleSubtitle(int index) async {
-    final player = ref.read(videoControllerProvider).player;
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) {
+      throw Exception('视频控制器未初始化');
+    }
+    
+    final player = controller.player;
     List<SubtitleTrack> subtitles = player.state.tracks.subtitle;
 
-    await ref.read(videoControllerProvider).player.stream.buffer.first;
+    await controller.player.stream.buffer.first;
     await player.setSubtitleTrack(subtitles[index + 2]);
   }
 
@@ -249,7 +274,12 @@ class ControlsService extends _$ControlsService{
 
   /// 记录播放位置
   Future<void> recordPosition({String type = "update"}) async {
-    final player = ref.read(videoControllerProvider).player;
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) {
+      return; // 如果控制器未初始化，直接返回
+    }
+    
+    final player = controller.player;
 
     if (player.state.playing == false) {
       return;

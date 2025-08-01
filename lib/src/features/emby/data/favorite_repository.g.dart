@@ -22,6 +22,8 @@ final favoriteRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef FavoriteRepositoryRef = AutoDisposeProviderRef<FavoriteRepository>;
 String _$toggleFavoriteHash() => r'cbd3835367aea11a1a0681116dd0fc281831e9b6';
 
@@ -171,6 +173,8 @@ class ToggleFavoriteProvider extends AutoDisposeFutureProvider<UserData> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ToggleFavoriteRef on AutoDisposeFutureProviderRef<UserData> {
   /// The parameter `id` of this provider.
   String get id;
@@ -316,6 +320,8 @@ class TogglePlayedProvider extends AutoDisposeFutureProvider<UserData> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin TogglePlayedRef on AutoDisposeFutureProviderRef<UserData> {
   /// The parameter `id` of this provider.
   String get id;
@@ -449,6 +455,8 @@ class HideFromResumeProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin HideFromResumeRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `id` of this provider.
   String get id;
@@ -462,4 +470,4 @@ class _HideFromResumeProviderElement
   String get id => (origin as HideFromResumeProvider).id;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

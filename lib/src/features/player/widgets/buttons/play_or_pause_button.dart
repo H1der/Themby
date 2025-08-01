@@ -22,11 +22,14 @@ class _PlayOrPauseButtonState extends ConsumerState<PlayOrPauseButton>{
   @override
   void initState() {
     super.initState();
-    subscription = ref.read(thembyControllerProvider).controller.player.stream.playing.listen((event) {
-      setState(() {
-        isPlaying = event;
+    final controller = ref.read(thembyControllerProvider).controller;
+    if (controller != null) {
+      subscription = controller.player.stream.playing.listen((event) {
+        setState(() {
+          isPlaying = event;
+        });
       });
-    });
+    }
   }
 
 
@@ -45,7 +48,10 @@ class _PlayOrPauseButtonState extends ConsumerState<PlayOrPauseButton>{
         size: 30,
       ),
       onPressed: (){
-        ref.read(videoControllerProvider).player.playOrPause();
+        final controller = ref.read(videoControllerProvider);
+        if (controller != null) {
+          controller.player.playOrPause();
+        }
       },
     );
   }

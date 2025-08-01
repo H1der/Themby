@@ -46,65 +46,68 @@ class _MediaProgressBar extends ConsumerState<MediaProgressBar>{
   void initState() {
     super.initState();
 
-    subscriptions.addAll(
-        [
-          ref.read(videoControllerProvider).player.stream.duration.listen((event) {
-            duration = event;
+    final controller = ref.read(videoControllerProvider);
+    if (controller != null) {
+      subscriptions.addAll(
+          [
+            controller.player.stream.duration.listen((event) {
+              duration = event;
 
-            final media = ref.read(controlsServiceProvider);
+              final media = ref.read(controlsServiceProvider);
 
-            if(media.position > Duration.zero){
-              position = media.position;
-              // ref.read(videoControllerProvider).player.seek(media.position);
-              ref.read(controlsServiceProvider.notifier).startRecordPosition(position: position.inMicroseconds);
-            }
-
-          }),
-          ref.read(videoControllerProvider).player.stream.position.listen((event) {
-            if(event - position > const Duration(seconds: 1) || event - position < const Duration(seconds: -1)){
-              position = event;
-
-              if(duration != ref.read(videoControllerProvider).player.state.duration){
-                duration = ref.read(videoControllerProvider).player.state.duration;
+              if(media.position > Duration.zero){
+                position = media.position;
+                // controller.player.seek(media.position);
+                ref.read(controlsServiceProvider.notifier).startRecordPosition(position: position.inMicroseconds);
               }
+
+            }),
+            controller.player.stream.position.listen((event) {
+              if(event - position > const Duration(seconds: 1) || event - position < const Duration(seconds: -1)){
+                position = event;
+
+                if(duration != controller.player.state.duration){
+                  duration = controller.player.state.duration;
+                }
+                setState(() {
+                });
+              }
+            }),
+            controller.player.stream.buffer.listen((event) {
               setState(() {
+                buffer = event;
               });
-            }
-          }),
-          ref.read(videoControllerProvider).player.stream.buffer.listen((event) {
-            setState(() {
-              buffer = event;
-            });
-          }),
-          ref.read(videoControllerProvider).player.stream.playing.listen((event) {
-            isPlaying = event;
-          }),
-          ref.read(videoControllerProvider).player.stream.buffering.listen((event) {
-            isBuffering = event;
-            if(isBuffering && isPlaying) {
-              SmartDialog.show(
-                  tag: "loading",
-                  clickMaskDismiss: false,
-                  builder: (_) {
-                    return Image.asset("assets/loading/loading-2.gif",height: 50);
-                  }
-              );
-            }else{
-              SmartDialog.dismiss(tag: "loading");
-            }
-          }),
-          ref.read(videoControllerProvider).player.stream.completed.listen((event) {
-            if(event){
-              ref.read(controlsServiceProvider.notifier).recordPosition(type: "stop");
-              ref.read(videoControllerProvider).player.pause();
-              ref.read(controlsServiceProvider.notifier).playNext();
-            }
-          }),
-          ref.read(videoControllerProvider).player.stream.log.listen((event) {
-            print(event.text);
-          }),
-        ]
-    );
+            }),
+            controller.player.stream.playing.listen((event) {
+              isPlaying = event;
+            }),
+            controller.player.stream.buffering.listen((event) {
+              isBuffering = event;
+              if(isBuffering && isPlaying) {
+                SmartDialog.show(
+                    tag: "loading",
+                    clickMaskDismiss: false,
+                    builder: (_) {
+                      return Image.asset("assets/loading/loading-2.gif",height: 50);
+                    }
+                );
+              }else{
+                SmartDialog.dismiss(tag: "loading");
+              }
+            }),
+            controller.player.stream.completed.listen((event) {
+              if(event){
+                ref.read(controlsServiceProvider.notifier).recordPosition(type: "stop");
+                controller.player.pause();
+                ref.read(controlsServiceProvider.notifier).playNext();
+              }
+            }),
+            controller.player.stream.log.listen((event) {
+              print(event.text);
+            }),
+          ]
+      );
+    }
 
     _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
       if(isPlaying && !isBuffering){

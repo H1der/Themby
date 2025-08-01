@@ -20,6 +20,8 @@ final searchRepositoryProvider = AutoDisposeProvider<SearchRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SearchRepositoryRef = AutoDisposeProviderRef<SearchRepository>;
 String _$getSearchRecommendHash() =>
     r'a02293ab73385c25822f3d3febab4c79deac4069';
@@ -37,6 +39,8 @@ final getSearchRecommendProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetSearchRecommendRef = AutoDisposeFutureProviderRef<EmbyResponse>;
 String _$embySearchHash() => r'e1a16244b556be9cc4a89dac0305cc5b6eb6529b';
 
@@ -174,6 +178,8 @@ class EmbySearchProvider extends AutoDisposeFutureProvider<EmbyResponse> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin EmbySearchRef on AutoDisposeFutureProviderRef<EmbyResponse> {
   /// The parameter `query` of this provider.
   String get query;
@@ -187,4 +193,4 @@ class _EmbySearchProviderElement
   String get query => (origin as EmbySearchProvider).query;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

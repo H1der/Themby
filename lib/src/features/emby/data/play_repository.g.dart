@@ -20,6 +20,8 @@ final playRepositoryProvider = AutoDisposeProvider<PlayRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef PlayRepositoryRef = AutoDisposeProviderRef<PlayRepository>;
 String _$getPlaybackInfoHash() => r'9f3d2b6eb05ec7dea95b2b52c5db9d35ac63317a';
 
@@ -157,6 +159,8 @@ class GetPlaybackInfoProvider extends AutoDisposeFutureProvider<PlaybackInfo> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetPlaybackInfoRef on AutoDisposeFutureProviderRef<PlaybackInfo> {
   /// The parameter `itemId` of this provider.
   String get itemId;
@@ -298,6 +302,8 @@ class GetPlayerUrlProvider extends AutoDisposeFutureProvider<String> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetPlayerUrlRef on AutoDisposeFutureProviderRef<String> {
   /// The parameter `itemId` of this provider.
   String get itemId;
@@ -465,6 +471,8 @@ class PositionStartProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin PositionStartRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `iId` of this provider.
   String get iId;
@@ -642,6 +650,8 @@ class PositionBackProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin PositionBackRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `iId` of this provider.
   String get iId;
@@ -819,6 +829,8 @@ class PositionStopProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin PositionStopRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `iId` of this provider.
   String get iId;
@@ -847,4 +859,4 @@ class _PositionStopProviderElement
   String get mId => (origin as PositionStopProvider).mId;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

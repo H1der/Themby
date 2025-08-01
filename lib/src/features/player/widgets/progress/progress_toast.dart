@@ -17,7 +17,8 @@ class ProgressToast extends ConsumerWidget {
 
     Duration position = ref.watch(dragingTimeProvider);
 
-    Duration duration = ref.read(videoControllerProvider).player.state.duration;
+    final controller = ref.read(videoControllerProvider);
+    Duration duration = controller?.player.state.duration ?? Duration.zero;
 
     return Container(
       margin: const EdgeInsets.only(top: 12),

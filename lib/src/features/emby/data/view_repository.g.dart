@@ -20,6 +20,8 @@ final viewRepositoryProvider = AutoDisposeProvider<ViewRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ViewRepositoryRef = AutoDisposeProviderRef<ViewRepository>;
 String _$getViewsHash() => r'3cd597f4009c0c8215690b368a539c965c4971fd';
 
@@ -34,6 +36,8 @@ final getViewsProvider = AutoDisposeFutureProvider<EmbyResponse>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetViewsRef = AutoDisposeFutureProviderRef<EmbyResponse>;
 String _$getMediaHash() => r'c206477930949a1edf94377cf352764540e3373d';
 
@@ -170,6 +174,8 @@ class GetMediaProvider extends AutoDisposeFutureProvider<Item> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetMediaRef on AutoDisposeFutureProviderRef<Item> {
   /// The parameter `id` of this provider.
   String get id;
@@ -298,6 +304,8 @@ class GetLastMediaProvider extends AutoDisposeFutureProvider<List<Item>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetLastMediaRef on AutoDisposeFutureProviderRef<List<Item>> {
   /// The parameter `parentId` of this provider.
   String get parentId;
@@ -426,6 +434,8 @@ class GetResumeMediaProvider extends AutoDisposeFutureProvider<List<Item>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetResumeMediaRef on AutoDisposeFutureProviderRef<List<Item>> {
   /// The parameter `parentId` of this provider.
   String? get parentId;
@@ -456,6 +466,8 @@ final getRecommendationsProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetRecommendationsRef = AutoDisposeFutureProviderRef<List<Item>>;
 String _$getSuggestionsHash() => r'7681be0364e79478205eed74f0c1f29aa77d4376';
 
@@ -471,6 +483,8 @@ final getSuggestionsProvider = AutoDisposeFutureProvider<List<Item>>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetSuggestionsRef = AutoDisposeFutureProviderRef<List<Item>>;
 String _$getSeasonsHash() => r'4c04c152471c5b9b3fa645320d9da3682f9494f8';
 
@@ -587,6 +601,8 @@ class GetSeasonsProvider extends AutoDisposeFutureProvider<List<Item>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetSeasonsRef on AutoDisposeFutureProviderRef<List<Item>> {
   /// The parameter `seriesId` of this provider.
   String get seriesId;
@@ -725,6 +741,8 @@ class GetEpisodesProvider extends AutoDisposeFutureProvider<List<Item>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetEpisodesRef on AutoDisposeFutureProviderRef<List<Item>> {
   /// The parameter `sid` of this provider.
   String get sid;
@@ -881,6 +899,8 @@ class GetItemProvider extends AutoDisposeFutureProvider<EmbyResponse> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetItemRef on AutoDisposeFutureProviderRef<EmbyResponse> {
   /// The parameter `itemQuery` of this provider.
   ({
@@ -1025,6 +1045,8 @@ class GetSimilarProvider extends AutoDisposeFutureProvider<EmbyResponse> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetSimilarRef on AutoDisposeFutureProviderRef<EmbyResponse> {
   /// The parameter `id` of this provider.
   String get id;
@@ -1152,6 +1174,8 @@ class GetNextUpProvider extends AutoDisposeFutureProvider<List<Item>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetNextUpRef on AutoDisposeFutureProviderRef<List<Item>> {
   /// The parameter `seriesId` of this provider.
   String get seriesId;
@@ -1279,6 +1303,8 @@ class GetGenresProvider extends AutoDisposeFutureProvider<EmbyResponse> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetGenresRef on AutoDisposeFutureProviderRef<EmbyResponse> {
   /// The parameter `id` of this provider.
   String get id;
@@ -1292,4 +1318,4 @@ class _GetGenresProviderElement
   String get id => (origin as GetGenresProvider).id;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -42,8 +42,11 @@ class _HorizontalScreenGestures extends ConsumerState<HorizontalScreenGestures>{
     if(!ref.read(playerSettingProvider).doubleClickToJump){
       return;
     }
-    final position = ref.read(videoControllerProvider).player.state.position;
-    ref.read(videoControllerProvider).player.seek(position - Duration(seconds: ref.read(playerSettingProvider).fastRewindTime));
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) return;
+    
+    final position = controller.player.state.position;
+    controller.player.seek(position - Duration(seconds: ref.read(playerSettingProvider).fastRewindTime));
       SmartDialog.showToast(
         '',
         alignment: Alignment.topCenter,
@@ -59,15 +62,21 @@ class _HorizontalScreenGestures extends ConsumerState<HorizontalScreenGestures>{
     if(!ref.read(playerSettingProvider).doubleClickToPause){
       return;
     }
-    ref.read(videoControllerProvider).player.playOrPause();
+    final controller = ref.read(videoControllerProvider);
+    if (controller != null) {
+      controller.player.playOrPause();
+    }
   }
 
   Future<void> onDoublePressRight() async {
     if(!ref.read(playerSettingProvider).doubleClickToJump){
       return;
     }
-    final position = ref.read(videoControllerProvider).player.state.position;
-    ref.read(videoControllerProvider).player.seek(position + Duration(seconds: ref.read(playerSettingProvider).fastForwardTime));
+    final controller = ref.read(videoControllerProvider);
+    if (controller == null) return;
+    
+    final position = controller.player.state.position;
+    controller.player.seek(position + Duration(seconds: ref.read(playerSettingProvider).fastForwardTime));
 
       SmartDialog.showToast(
         '',
@@ -115,21 +124,25 @@ class _HorizontalScreenGestures extends ConsumerState<HorizontalScreenGestures>{
           return;
         }
 
-        final rate = controllerState.player.state.rate * 2;
-        SmartDialog.show(
-            tag: "show_long_press",
-            alignment: Alignment.topCenter,
-            maskColor: Colors.transparent,
-            builder: (context) {
-              return iconToast('$rate倍速快进中', Icons.fast_forward_rounded);
-            }
-        );
-        controllerState.player.setRate( rate);
+        if (controllerState != null) {
+          final rate = controllerState.player.state.rate * 2;
+          SmartDialog.show(
+              tag: "show_long_press",
+              alignment: Alignment.topCenter,
+              maskColor: Colors.transparent,
+              builder: (context) {
+                return iconToast('$rate倍速快进中', Icons.fast_forward_rounded);
+              }
+          );
+          controllerState.player.setRate( rate);
+        }
       },
       onLongPressEnd: (details){
         if (lock) return;
-        final rate = controllerState.player.state.rate;
-        controllerState.player.setRate(rate / 2);
+        if (controllerState != null) {
+          final rate = controllerState.player.state.rate;
+          controllerState.player.setRate(rate / 2);
+        }
         SmartDialog.dismiss(tag: "show_long_press");
       },
       onVerticalDragStart: (details) async {

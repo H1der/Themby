@@ -78,9 +78,9 @@ dependencies:
   dio_cache_interceptor: ^3.5.0
 
   #视频播放
-  media_kit: ^1.1.11
-  media_kit_video: ^1.2.5
-  media_kit_libs_video: 1.0.5
+  media_kit: ^1.1.10
+  media_kit_video: ^1.2.4
+  media_kit_libs_video: 1.0.4
 
   #打开外部链接
   url_launcher: ^6.3.0
@@ -112,7 +112,8 @@ dependencies:
   flutter_native_splash: ^2.4.1
 
   #屏幕方向
-  auto_orientation: ^2.3.1
+  # auto_orientation: ^2.3.1  # 临时注释掉，因为命名空间问题
+  native_device_orientation: ^1.1.4
 
   #音量控制
   flutter_volume_controller: ^1.3.2
@@ -121,7 +122,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
-  intl: ^0.19.0
+  intl: 0.20.2
 
   webdav_client: ^1.2.2
 

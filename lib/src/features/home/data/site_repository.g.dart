@@ -20,6 +20,8 @@ final siteRepositoryProvider = AutoDisposeProvider<SiteRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SiteRepositoryRef = AutoDisposeProviderRef<SiteRepository>;
 String _$getSitesHash() => r'e9957d6e565512b690f58aecfb2c0c8aa62fb428';
 
@@ -34,6 +36,8 @@ final getSitesProvider = AutoDisposeFutureProvider<List<Site>>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetSitesRef = AutoDisposeFutureProviderRef<List<Site>>;
 String _$finaAllByTextHash() => r'f67f875e1dd4263e272492ac6e72d654d009a9e1';
 
@@ -171,6 +175,8 @@ class FinaAllByTextProvider extends AutoDisposeFutureProvider<List<Site>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin FinaAllByTextRef on AutoDisposeFutureProviderRef<List<Site>> {
   /// The parameter `text` of this provider.
   String get text;
@@ -299,6 +305,8 @@ class AddEmbySiteProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin AddEmbySiteRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `site` of this provider.
   Site get site;
@@ -427,6 +435,8 @@ class RemoveEmbySiteProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin RemoveEmbySiteRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `site` of this provider.
   Site get site;
@@ -555,6 +565,8 @@ class UpdateEmbySiteProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin UpdateEmbySiteRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `site` of this provider.
   Site get site;
@@ -581,6 +593,8 @@ final syncSiteProvider = AutoDisposeFutureProvider<bool>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SyncSiteRef = AutoDisposeFutureProviderRef<bool>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
